@@ -26,44 +26,6 @@ Kay最早研究了交互式机器翻译(InteractiveMachineTranslation，IMT)技�
 
 为此，Foster等开展了一项有趣的研究工作，提出使用词预测(wordprediction)技术来实现在人机交互中的预测式交互翻译(interactive—predictivemachinetranslation，IPMT)，该方法将用户的翻译行为看作是一个顺序的选词过程，而系统需要在每一个翻译选词的过程中通过前缀不断预测下一译文，每次译员的选择都影响着下一次机器的推荐，真正实现了系统与用户在翻译过程中的深度交互，
 
-### TransType
-
-使用在线机器翻译的用户一般不知道统计式机器翻译系统可以生成一串备选翻译，TransType根据用户的输入对备选翻译列表进行筛选，得到合适的翻译建议。结果会以下拉列表的形式呈现。
-
-![/var/folders/rp/8ln_vl0n5k94nsdbcq536ktm0000gn/T/com.microsoft.Word/WebArchiveCopyPasteTempFiles/transtype2.jpg](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image005.jpg)
-
- 
-
-之后的几年当中，又有很多的研究人员对TransType系统进行了改进。Langlais等人在2000年对系统的用户界面和词的预测提出了改进[2j。2002年，由许多欧盟研究机构共同参与的TransType2项目，创新性的把一个完全的基于数据驱动的机器翻译系统嵌入到交互式翻译框架中，并且在每一次的交互过程中，翻译系统都会根据翻译人员给出的译文前缀，预测出一个或者多个最好的后缀补全译文，供翻译人员选择。在TransType2项目中，很多的研究人员对系统进行分析，并且提出很多种方法来解决这些问题。TransType的这两个项目极大的推动了交互式机器翻译技术的发展。
-
- 
-
- 
-
-### CASMACAT
-
-CASMACAT（Cognitive Analysis and Statistical Methods for Advanced Computer Aided Translation）[3](http://blog.xulihang.me/use-machine-translation-to-help-human-translation/#fn:casmacat)基于MateCAT开发，它的一个特点是机器翻译可以根据用户的操作不断学习完善。它使用了一个专门的统计式机器翻译系统，和翻译界面的耦合程度高。用户输入翻译后（前缀），系统会给出一个机器翻译结果（后缀），单词还可以设置用颜色来表示置信程度。
-
-![/var/folders/rp/8ln_vl0n5k94nsdbcq536ktm0000gn/T/com.microsoft.Word/WebArchiveCopyPasteTempFiles/casmacat-new.png](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image007.jpg)
-
-CASMACAT可以记录用户的翻译过程，以便进行相关研究。
-
-### Forecat
-
-在2014年，Pérez-Ortiz等人提出了一个黑盒的方法。它可以使用任意机器翻译系统、翻译记忆和双语词典提供的双语资源，为翻译提供参考。该方法将原文以n-gram的办法分为多个片段，然后每个片段都利用双语资源进行翻译，然后根据一定的排序方法（目前是简单的距离方法），给用户提供有限的几个建议。用户输入一个前缀，就会做进一步筛选。因为使用了各种双语资源，再叫交互式机器翻译就不合适了，一般叫做交互式翻译预测。黑箱的方法更容易理解，运行成本低，可利用资源多，试验结果显示比CASMACAT这样的白箱方法效果更好。[4](http://blog.xulihang.me/use-machine-translation-to-help-human-translation/#fn:compare)
-
-Forecat将原文拆分为若干片段，片段的最大长度可以定义，默认为4个词。然后，它使用机器翻译或者翻译记忆翻译这些片段，然后根据用户输入匹配译文片段。匹配译文开头时，如果开头一样，还要根据输入框中的位置和对应原文的位置进行排序。这样得到的片段会很多，很多距离较远的片段其实提供的参考价值更大，所以一般采用所处编辑位置最长和最短的片段。
-
-建议以下拉列表的方式提供，默认显示4个建议。
-
-Forecat使用Java编写，除了提供Web应用外，还可以集成到开源CAT工具OmegaT中使用。
-
-![/var/folders/rp/8ln_vl0n5k94nsdbcq536ktm0000gn/T/com.microsoft.Word/WebArchiveCopyPasteTempFiles/forecat.png](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image009.jpg)
-
- 
-
-2010年，Ortiz和Casacuberta等人，将在线学习的思想加入到了交互式机器翻译技术当中。其主要思想是利用用户的反馈信息来不断的完善系统的底层模型[a3。Gonzdlez-Rubio和Or—tiz等人，将机器译文的置信度评价作为其是否需要和翻译人员进行交互的衡量，从而有效地平衡了翻译人员的工作量和系统翻译结果的准确率[4]。2012年，Gonzdlez—Rubio和Ortiz等人[5]，将动态学习的方法引入到交互式机器翻译系统当中，使系统可以增量式的从已经翻译完的句子中学习，从而明显地提高后续句子的翻译准确率，有效减少了翻译人员的工作量。2013年，JesflsGonzdlez-Rubio和Dan—ielOrtlz—Martinez等人L6]，将基于层次短语的翻译模型应用到了交互式机器翻译当中，并且采用了超图作为机器和用户之间的交互接口。
-
  
 
  
@@ -90,23 +52,13 @@ Source：腾讯AI Lab：深度解读AI辅助翻译的研究及应用
 
 这是我们为什么投入人机交互式机器翻译的最初动机。
 
- 
 
- 
 
- 
-
- 
-
-**全自动输出翻译结果** **vs.** **人机交互输出翻译结果：**
-
- 
+**全自动输出翻译结果** **vs.** **人机交互输出翻译结果：** 
 
 **全自动输出翻译结果：**
 
 无法保证译文质量。
-
- 
 
 **人机交互输出翻译结果：**
 
@@ -116,23 +68,17 @@ Source：腾讯AI Lab：深度解读AI辅助翻译的研究及应用
 
 （3）实时提供翻译辅助信息
 
- 
+**人机交互式机器翻译技术及其原理（以*TranSmart*为例）**
 
  
 
- 
-
-**人机交互式机器翻译技术及其原理（以****TranSmart****为例）**
-
- 
-
-**“****一评估三交互****”**
+“一评估三交互”
 
 腾讯AI Lab根据深度调研的结果，总结出“一评估三交互”的人机交互翻译范式。
 
-![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image011.gif)
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image006.gif)
 
-**三交互**
+“三交互”
 
 三种人机交互形式：翻译输入法、交互式机器翻译和译后编辑，分别适用于自动译文质量比较差、质量尚可和质量较优的情形。
 
@@ -162,11 +108,11 @@ Source：腾讯AI Lab：深度解读AI辅助翻译的研究及应用
 
  
 
-“三交互”中的技术原理
+**“三交互”中的技术原理**
 
-**一、译后编辑**
+一、译后编辑
 
-![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image013.gif)
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image008.gif)
 
 当自动译文质量比较好的情况下，通过译后编辑这种模式就可以快速完成翻译任务。
 
@@ -178,7 +124,7 @@ Source：腾讯AI Lab：深度解读AI辅助翻译的研究及应用
 
 **二、交互式机器翻译**
 
-![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image015.gif)
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image010.gif)
 
 当机器译文质量尚可，但缺乏译后编辑价值时，就需要使用交互式机器翻译技术。交互式机器翻译的中心思想在于，机器翻译根据用户已输入片断，提供片断级的翻译建议。优化目标是通过尽可能少的人工干预，生成尽可能准确的长翻译片断。主要的技术难点在于如何理解用户给定的干预信息，干预信息包括但不限于译文片断、术语以及不希望出现的词。
 
@@ -186,7 +132,7 @@ Source：腾讯AI Lab：深度解读AI辅助翻译的研究及应用
 
 **交互式机器翻译的技术核心：约束解码方法**
 
-![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image017.gif)
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image012.gif)
 
 在通用的机器翻译系统中，模型的推理阶段一般采用标准的Beam Search算法。但在人机交互式机器翻译系统中，生成的自动译文往往需要满足一定约束，比如前缀约束、后缀约束、译文中必须出现或者必须不出现哪些片断。
 
@@ -194,15 +140,331 @@ Source：腾讯AI Lab：深度解读AI辅助翻译的研究及应用
 
 比较简单且成熟的解码方法称为Grid Beam Search，即在推理的每一个时刻都试图扩展约束，最后输出满足所有约束的翻译假设。优点是代码简单直接，缺点是解码速度下降比较明显，且对约束的噪声比较敏感。
 
-![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image019.gif)
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image014.gif)
 
  
 
-**三、翻译输入法**
+ 
 
  
 
-## 2.工具测试
+ 
+
+三、翻译输入法
+
+ 
+
+2.工具测试
+
+### 常见交互式翻译工具概述
+
+**Transmart**
+
+11月13日，深圳 - 腾讯AI Lab今日发布了一款AI辅助翻译产品 - “腾讯辅助翻译”（Transmart），可满足用户快速翻译的需求，用AI辅助人工翻译提高效率和质量。该产品采用业内领先的人机交互式机器翻译技术，融合神经网络机器翻译、统计机器翻译、输入法、语义理解、数据挖掘等多项前沿技术，配合亿级双语平行数据，为用户提供实时智能翻译辅助，帮助用户更好更快地完成翻译任务。
+
+交互式机器翻译基于自主实现的约束翻译解码技术，在提升译文准确性的同时，解码速度也被优化到满足互联网环境中实时交互的要求。实时解码速度是影响交互式机器翻译产品落地的关键因素。结合已有积累，腾讯AI Lab设计并实现了专用于人机交互的神经机器翻译系统。（摘自腾讯AI实验室）
+
+**CASMACAT**
+
+CASMACAT（Cognitive Analysis and Statistical Methods for Advanced Computer Aided Translation）基于MateCAT开发，它的一个特点是机器翻译可以根据用户的操作不断学习完善。它使用了一个专门的统计式机器翻译系统，和翻译界面的耦合程度高。用户输入翻译后（前缀），系统会给出一个机器翻译结果（后缀），单词还可以设置用颜色来表示置信程度。
+
+![https://github.com/xulihang/xulihang.github.io/raw/master/album/mt/casmacat-new.png](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image016.jpg)
+
+CASMACAT可以记录用户的翻译过程，以便进行相关研究。
+
+**Forecat**
+
+和CASMACAT与机器翻译相耦合的方式不同，又有人提出了一个以黑箱的方法利用机器翻译等双语资源的方法，开发出了Forecat这一软件。黑箱的方法更容易理解，运行成本低，可利用资源多，试验结果显示比CASMACAT这样的白箱方法效果更好。[4](http://blog.xulihang.me/use-machine-translation-to-help-human-translation/#fn:compare)
+
+Forecat将原文拆分为若干片段，片段的最大长度可以定义，默认为4个词。然后，它使用机器翻译或者翻译记忆翻译这些片段，然后根据用户输入匹配译文片段。匹配译文开头时，如果开头一样，还要根据输入框中的位置和对应原文的位置进行排序。这样得到的片段会很多，很多距离较远的片段其实提供的参考价值更大，所以一般采用所处编辑位置最长和最短的片段。
+
+建议以下拉列表的方式提供，默认显示4个建议。
+
+Forecat使用Java编写，除了提供Web应用外，还可以集成到开源CAT工具OmegaT中使用。
+
+![https://github.com/xulihang/xulihang.github.io/raw/master/album/forecat.png](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image018.jpg)
+
+**PTM**
+
+白箱式交互式机器翻译也在不断地完善中。斯坦福大学开发的预测型翻译记忆（Predictive translation memory, PTM）系统[5](http://blog.xulihang.me/use-machine-translation-to-help-human-translation/#fn:ptm)，基于混合主体（mixed-initiative）人机交互设计原则，在拥有之前的交互式翻译系统的特性的基础上上更加注重交互界面的设计。
+
+比如它强调减少眼球的移动。传统的CAT工具都是采用的双栏表格形式，PTM使用的一行原文，一行译文相互交叉的模式。它认为分栏阅读时眼球移动的距离较大，而后者更加符合阅读习惯。因为原文和译文交叉，对于英语和法语这样都是由字母构成的语言不易区分，于是译文使用了等宽字体。
+
+![https://github.com/xulihang/xulihang.github.io/raw/master/album/mt/ptm.png](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image020.jpg)
+
+上图是PTM的界面截图，A是原文，B是翻译了的整句，C是当前进行翻译的句子，如果原文的单词已经被翻译（通过词对齐实现），颜色会变为蓝色，D是翻译是用来给出建议的下拉列表，E是在输入框中给出的翻译。在原文的单词上悬停鼠标，还可以查看释义。
+
+PTM对译者的帮助主要在三个方面：
+
+\1.             通过查词和显示已翻译的词，了解原文。
+
+\2.             给出粗略的机器翻译。
+
+\3.             利用下拉列表提供翻译的自动完成功能。
+
+PTM还有一个特点是利用斯坦福的句法分析工具提取短语，以此来确定翻译建议的单元。
+
+PTM的作者现已开办公司，推出了Lilt这一款商业化的计算机辅助翻译工具。
+
+（摘自<http://blog.xulihang.me/use-machine-translation-to-help-human-translation/>）
+
+**Lilt**
+
+​    Lilt成立于2015年，于2018年获得950万美元的A轮融资。最初，Lilt以月费的形式向翻译人员销售并授权其解决方案，翻译人员可以将Lilt的软件用于他们自己的翻译公司和终端客户。为了加速牵引力，Lilt推出了翻译公司合作伙伴计划和大学计划，并与西海岸的其他语言科技公司合作。与此同时开始探索直接向客户提供翻译服务。
+
+当翻译人员在输入翻译文本时，Lilt能够记住其所输入内容并根据输入内容生成相关建议。Lilt不仅仅可以记住单词和短语，还可以收集、记忆用户的翻译习惯和语法风格，以提供更好的建议。
+
+当用户输入相应翻译内容时，Lilt能即时提供建议，用户可通过Enter键选择最合适的建议，建议文本下面还提供了其他的替代内容。
+
+每当用户选择一个建议的单词或短语，或者输入一个新的单词或短语， Lilt都会记住此操作并且在下一次遇到相同内容时优先提供建议。Lilt可以记住和建议单词，甚至整个短语。
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image022.jpg)
+
+（图片来自微信公众号文章）
+
+目前，Lilt支持英文和简体中文，丹麦语，荷兰语，法语，德语，意大利语，挪威语，波兰语，葡萄牙语，俄语，西班牙语和瑞典语之间的翻译。
+
+Lilt是一款付费商业工具。但在实际测试中，我们既无法申请到Demo版本的测试权限，在选用了装载Lilt的Smartcat工具进行测试时，在免费版本中也并没有实现人机交互功能，也没有找到付费版本使用界面。
+
+ ![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image024.gif)
+
+ 
+
+ 
+
+### Tencent TranSmart
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image026.gif)
+
+**文学类文本机翻测试**
+
+一般来说，文学类文本的机器翻译质量较差，不适用于机器翻译模式，而交互式机翻是否针对文学类文本的机器翻译体验进行了提升呢？我们选用了一段评述性质的文学类文本进行了测试。
+
+**工作流程**
+
+用户输入原文或将原文文档粘贴到左侧文本框中，此后右边将自动显示机器翻译译文，左下角显示单词词组的参考释义、术语库和例句库供译员参考，右下角译员根据机器翻译译文自行编辑译文，在编辑过程中跟踪译员输入的内容实时更新推荐译文。翻译结束后可以复制全部译文或者选中译文，进行下一步的操作。
+
+**大小和格式**
+
+原文字数上限为2000字符。 
+
+**支持语言**
+
+支持中英互译
+
+**界面展示**
+
+“参考释义”模块会显示当前译者正在进行操作的句子，译者可以选择其中的单词或词组，Transmart将自动显示该单词或短语的释义，在翻译到该句子时，可以将想要选择的词义“插入编辑框”。
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image028.gif)
+
+术语库功能中将对特定术语进行释义和例句举例，供译者参考。
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image030.gif)
+
+例句库功能中将会为译者提供与原文匹配度高于30%的句子。译者可以将匹配度较高的句子“插入编辑框”。 这里文学类文本匹配度通常较低，在一篇786字的文学类文本段落中，平均匹配率仅为40%左右。
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image032.gif)
+
+在“切换跟随模式”一栏可以将编辑框移动到上方显示机器翻译结果的部位，编辑框上移，紧跟当前选中自动译文，更加便于用户进行对比操作。
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image034.gif)
+
+**具体操作**
+
+跟踪用户输入、实时更新推荐译文。
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image036.gif)
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image038.gif)
+
+这里值得一提的一点是，在实时推荐部分，还会根据海量数据搜索，显示译员可能会使用到的内容。例如Theresa May on Monday night declared that Brexit negotiations were “in the endgame”.这样的句子，当用户输入“英国”这一原文中并不存在的内容时，Transmart会为用户自动提示“英国首相……”等内容
+
+选中推荐译文任意片段，直接插入编辑框
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image040.gif)
+
+在对该句子的翻译结束后，点击确认修改，即可直接替换机器翻译区中选中的译文。，点击向右箭头切换到下一个句子，点击向左箭头切换到上一个句子。
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image042.gif)
+
+系统会预测用户下一步的输入内容，提供灰度提示。同时还提供输入法，支持拼音转换为汉字。
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image044.gif)
+
+ 
+
+操作过程中，Transmart为用户提供了大量的快捷键。
+
+输入法快捷键：
+
+按回车键（Enter）选中第一个候选词
+
+按上下方向键切换候选词
+
+灰度提示快捷键：
+
+按右方向键逐词采用提示内容
+
+按左方向键逐词取消已采用提示内容
+
+按Tab 键采用全部提示内容
+
+**文学文本翻译质量**
+
+尽管操作形式上大大提升了用户体验，但是Transmart交互式机器翻译在文学领域的译文质量还是非常一般。
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image046.gif)
+
+在这段话中，很多句子的译文过于直白，逻辑关系不清晰，内容表达不正确。例如：“如果一个嫌疑犯在狗吃的时候经历了疼痛，她是一个女巫，因为咀嚼释放了’有毒和恶性颗粒’”这一句，逻辑混乱，原文的意思也没有表达清楚。
+
+基于本篇文章，通过与百度翻译、谷歌翻译、有道翻译的对比，也可以发现Transmart在机器翻译的质量上并没有明显的优势。
+
+同时，机器翻译的结果还是会对译员在自行输入时的判断造成一定难以避免的影响。
+
+**医学类文本机翻测试**
+
+总体来说，正确率较高
+
+单击/双击 选中机器翻译的译文，对其进行修改。
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image048.jpg)
+
+ 
+
+选中单词，提供1-5个可选择的释义（不同单词提供的释义个数不一样）
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image050.jpg)
+
+机翻结果会跟随人类译员输入的结果进行更改，以及灰色字体进行译文提示。
+
+（将“饱和”输为“宝盒”）
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image052.jpg)
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image054.jpg)
+
+选中一句译文，给出原文对应的术语库。
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image056.jpg)
+
+ 
+
+汉英
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image058.gif)
+
+技术类文本测试
+
+技术类文本翻译质量较差，部分非译元素无法识别
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image060.gif)
+
+译文修改,输入时自动提示。
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image062.gif)
+
+ 
+
+**Transmart优点与缺点总结**
+
+**优点**
+
+页面中显示的内容较为全面。不仅包含了原文和译文，同时为用户提供了编辑区域、术语库、例句库、词组释义等功能。用户在使用过程中减少了在词典等多种工具之间不断切换的动作，提升了翻译效率。
+
+快捷键使用简单便捷，易于记忆。使用快捷键可以在机器翻译的内容可以沿用的情况下，减少译员敲击键盘输入的次数，减轻译员工作疲劳感，加快翻译速度，提升工作效率。
+
+根据译员输入的内容实时更新机器翻译提示，这样一来有助于译员更快地寻找到想要输入的内容，让工作更加轻松。
+
+能够识别不同字体，并且让输出的译文也保持一致。
+
+ 
+
+**问题：**
+
+仅支持中英双语互译。
+
+无法上传文档。只支持输入或粘贴原文，不支持对整个文档的上传。
+
+无法保留原文的特殊格式，如加粗、颜色变化、下划线等等。
+
+译文经过确认修改后才会被替换到机器翻译的译文当中，无法批量导出，只能复制粘贴。
+
+机器翻译的质量上暂时没有太大的优势。
+
+术语库中术语的质量参差不齐，部分存在错误。
+
+整体界面空白处较多。术语库和例句库通常无法显示完全。这样用户在使用的过程中，就有可能需要不停地上下滚动页面，降低了界面的交互性。
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image064.gif)
+
+ 
+
+### Casmacat
+
+说明：测试使用的版本为demo版（试用版）
+
+**工作平台结构、交互形式**
+
+Editor（图上标黄部分）: 用户与Casmacat工作平台的交互界面。与GUI server和translation server传递信息，用户通过键盘、鼠标、e-pen输入信息，眼动追踪系统记录用户行为。
+
+ 
+
+ 
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image066.jpg)
+
+ 
+
+**医学类文件测试（英语——西班牙语）**
+
+自带译文提示（“ITP”模式下，按ESC进入“PE”模式，无提示）
+
+输错的字符不用删除，在错误字符左侧重新输入，系统会自动将错误字符删除。
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image068.jpg)
+
+ 
+
+输错的字符自动被删除
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image070.jpg)
+
+ 
+
+ 
+
+Xlf格式标签的处理
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image072.jpg)
+
+ 
+
+按钮与快捷键
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image074.jpg)
+
+![img](file:///C:/Users/91206/AppData/Local/Temp/msohtmlclip1/01/clip_image076.jpg)
+
+ 
+
+**总结**
+
+**优点**
+
+自带译文提示
+
+输错的字符不用删除
+
+操作既可以直接快捷键也可以点按钮
+
+ITP（Interactive Translation Prediction）模式和PE模式可以自由切换，PE模式可以减少机器翻译结果对译者的干扰。
+
+**缺点**
+
+只支持Linux系统
+
+注：这里casmacat只能够获得测试版进行实际操作，功能无法测试全面。
 
  
 
@@ -212,7 +474,11 @@ Source：腾讯AI Lab：深度解读AI辅助翻译的研究及应用
 
 交互式机器翻译动机与定位：除了极少一部分机器翻译能完成得很好的翻译任务以外，如果要正式使用自动译文，几乎都需要不同程度的人工介入
 
+ 
+
 延迟感  实用性低
+
+ 
 
 韩林涛 tranSMART
 
@@ -222,7 +488,9 @@ Source：腾讯AI Lab：深度解读AI辅助翻译的研究及应用
 
 术语库收录不对
 
-机器翻译不够好 
+机器翻译不够好
+
+ 
 
 黄国平：
 
@@ -254,9 +522,13 @@ Source：腾讯AI Lab：深度解读AI辅助翻译的研究及应用
 
 往往会出现很多现实问题。比如最终部署的系统并不能完全预定任务，主要可能是对自动译文质量过高的期望，或者发现开源系统不是那么容易填坑，另外就是如何甄别出切实可用的技术，并拉通目标场景的技术链条。
 
+ 
+
 机器翻译观察：
 
-各行各业的“非专业”译者可以凭借自己的专业知识，快速扩大这个原本不足百万的用户群体。 
+各行各业的“非专业”译者可以凭借自己的专业知识，快速扩大这个原本不足百万的用户群体。
+
+ 
 
 :第一, 传统IMT方法通过逐字确认前缀的方式自左向右补全句子, 一个短语需要解码多次才能被翻译正确;第二, 翻译正确的译文后缀会随着前缀的更改重新解码, 有时原本正确的译文在增加了前缀约束后会被翻译需要译员重新确认, 影响交互效率;第三, 限制了人机交互方式, 译员无法从其他方式给予更充分的指导;第四, 一些研究人员对传统交互方式进行扩展, 允许译员在译文中选择单语片段，但是从错误的译文里识别正确的译文片段十分困难, 增加了译员的认知负担。
 
@@ -268,17 +540,21 @@ Source：腾讯AI Lab：深度解读AI辅助翻译的研究及应用
 
 ​                3.可选短语的排序
 
+ 
+
 本次目标：减少译员工作量和认知负担、应用于专业领域、
 
 解决的问题：减少系统反应时间和键盘敲击率，译文后缀预测的精确度，收集语料的使用（译员标记正确，怎么学习），只有前缀约束
 
-建议：源语与目标语言对齐展示，后缀译文最大化，减少每个字符都有无用提示。与译前编辑结合？加入HMM对齐模型，使用户反馈信息不断完善翻译系统；词图作为交互接口进行交互，搜索不到合适译文时再解码。动态学习，
+ 
 
-交互：图形界面、鼠标
+建议：源语与目标语言对齐展示，后缀译文最大化，减少每个字符都有无用提示。与译前编辑结合？加入HMM对齐模型，使用户反馈信息不断完善翻译系统；词图作为交互接口进行交互，搜索不到合适译文时再解码。动态学习， 
+
+交互：图形界面、鼠标 
 
 问题：只能从左至右，一个短语需要输入多次前缀；译员无法对其进行其他指导，
 
-​       有时候后缀正确，但是输入前缀后后缀改变，→基于片段的
+​       有时候后缀正确，但是输入前缀后后缀改变，→基于片段的 
 
 版本控制
 
@@ -286,9 +562,9 @@ Source：腾讯AI Lab：深度解读AI辅助翻译的研究及应用
 
  
 
- 
-
 ## 4.优化
+
+ 
 
  
 
